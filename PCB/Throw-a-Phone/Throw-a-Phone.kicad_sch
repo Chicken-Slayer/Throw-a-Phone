@@ -3554,7 +3554,7 @@
 				)
 			)
 		)
-		(property "Footprint" "ESP32-C3_SUPERMINI_TH:MODULE_ESP32-C3_SUPERMINI_TH"
+		(property "Footprint" "footprints:MODULE_ESP32-C3_SUPERMINI_TH"
 			(at 163.83 102.87 0)
 			(effects
 				(font
@@ -4071,7 +4071,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
 			(at 81.28 147.32 0)
 			(effects
 				(font
@@ -4227,7 +4227,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
 			(at 55.88 71.12 0)
 			(effects
 				(font
@@ -4295,7 +4295,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
 			(at 106.68 96.52 0)
 			(effects
 				(font
@@ -4363,7 +4363,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
 			(at 81.28 96.52 0)
 			(effects
 				(font
@@ -4433,7 +4433,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.00mm:PinHeader_1x02_P2.00mm_Vertical"
 			(at 255.27 120.65 0)
 			(effects
 				(font
@@ -4501,7 +4501,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
 			(at 55.88 96.52 0)
 			(effects
 				(font
@@ -4657,7 +4657,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
 			(at 55.88 147.32 0)
 			(effects
 				(font
@@ -4725,7 +4725,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.00mm:PinHeader_1x02_P2.00mm_Vertical"
 			(at 226.06 118.11 90)
 			(effects
 				(font
@@ -4793,7 +4793,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
 			(at 81.28 71.12 0)
 			(effects
 				(font
@@ -4949,7 +4949,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
 			(at 81.28 121.92 0)
 			(effects
 				(font
@@ -5345,7 +5345,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.00mm:PinHeader_1x07_P2.00mm_Vertical"
 			(at 243.84 87.63 0)
 			(effects
 				(font
@@ -5425,7 +5425,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
 			(at 106.68 121.92 0)
 			(effects
 				(font
@@ -5493,7 +5493,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
 			(at 106.68 71.12 0)
 			(effects
 				(font
@@ -5715,7 +5715,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
 			(at 55.88 121.92 0)
 			(effects
 				(font
@@ -6180,7 +6180,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.00mm:PinHeader_1x07_P2.00mm_Vertical"
 			(at 228.6 90.17 0)
 			(effects
 				(font
@@ -6260,7 +6260,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
 			(at 106.68 147.32 0)
 			(effects
 				(font
@@ -6417,7 +6417,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "footprints:SSD1306-0.91-OLED-4pin-128x32"
 			(at 158.75 53.34 0)
 			(effects
 				(font
