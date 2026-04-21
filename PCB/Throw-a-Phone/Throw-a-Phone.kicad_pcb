@@ -7538,17 +7538,6 @@
 				)
 			)
 		)
-		(fp_text user "SDA"
-			(at 34.5 9.81 90)
-			(layer "F.SilkS")
-			(uuid "8f122637-5400-47bc-8f99-3a0526c8a67a")
-			(effects
-				(font
-					(size 0.75 0.75)
-					(thickness 0.15)
-				)
-			)
-		)
 		(pad "1" thru_hole rect
 			(at 36.5 2.19 180)
 			(size 1.7 1.7)
@@ -8851,15 +8840,16 @@
 		)
 		(embedded_fonts no)
 	)
-	(gr_line
+	(gr_arc
 		(start 132.5 140)
-		(end 177.5 140)
+		(mid 130.732233 139.267767)
+		(end 130 137.5)
 		(stroke
 			(width 0.05)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "0305bcfc-5ee5-444a-b387-0f2b43352f5d")
+		(uuid "06c90c03-936d-4fd5-84ae-a15ef00b3126")
 	)
 	(gr_arc
 		(start 177.5 55)
@@ -8870,27 +8860,7 @@
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "3fb0472d-f260-4103-8d46-f9b71252111e")
-	)
-	(gr_line
-		(start 177.5 55)
-		(end 132.5 55)
-		(stroke
-			(width 0.05)
-			(type default)
-		)
-		(layer "Edge.Cuts")
-		(uuid "49058bd1-ab20-47c6-93fa-b9c66f55f502")
-	)
-	(gr_line
-		(start 130 57.5)
-		(end 130 137.5)
-		(stroke
-			(width 0.05)
-			(type default)
-		)
-		(layer "Edge.Cuts")
-		(uuid "68484828-47be-48d5-88fe-1c6e9ac8665c")
+		(uuid "19e0274d-a452-4d87-909a-25f435cc3a7f")
 	)
 	(gr_arc
 		(start 180 137.5)
@@ -8904,14 +8874,24 @@
 		(uuid "6ea39bb4-2398-4430-a3b8-68f5802a6691")
 	)
 	(gr_line
-		(start 180 137.5)
-		(end 180 57.5)
+		(start 132.5 55)
+		(end 177.5 55)
 		(stroke
 			(width 0.05)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "d47ad8da-6a29-4d29-925f-80e26936c7cb")
+		(uuid "d8c1a1fb-2ee4-4f61-b902-35191d79c857")
+	)
+	(gr_line
+		(start 130 137.5)
+		(end 130 57.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "dd62baee-ca14-40c4-a481-e27b45e86aac")
 	)
 	(gr_arc
 		(start 130 57.5)
@@ -8924,16 +8904,36 @@
 		(layer "Edge.Cuts")
 		(uuid "df58d34b-a6f9-4284-8c71-b3e06a59c619")
 	)
-	(gr_arc
-		(start 132.5 139.982233)
-		(mid 130.732233 139.25)
-		(end 130 137.482233)
+	(gr_line
+		(start 177.5 140)
+		(end 132.5 140)
 		(stroke
 			(width 0.05)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "f072988c-05cd-4416-8174-f2a419e2ce49")
+		(uuid "f039e338-4ec1-4039-b546-313de25291db")
+	)
+	(gr_line
+		(start 180 57.5)
+		(end 180 137.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "f96b84ef-d553-4d7f-9c87-cbf0011044c7")
+	)
+	(gr_text "SDA"
+		(at 138.5 67.25 90)
+		(layer "F.SilkS")
+		(uuid "8f122637-5400-47bc-8f99-3a0526c8a67a")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+			)
+		)
 	)
 	(segment
 		(start 133.75 109.94)
