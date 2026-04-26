@@ -4,11 +4,10 @@ By Tejas Joshi "Chicken Slayer"
 https://github.com/Chicken-Slayer/Throw-a-Phone
 */
 
-
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include <HardwareSerial.h>
+#include <SoftwareSerial.h>
 
 // HARDWARE CONFIGURATION:
 
@@ -24,9 +23,8 @@ Adafruit_SSD1306 display(SCREEN_W, SCREEN_H, &Wire, OLED_RESET);
 // GSM Module:
 #define SIM_RX 20
 #define SIM_TX 21
-#define SIM_BAUD
 
-HardwareSerial simSerial(1);
+SoftwareSerial SIM800L(SIM_RX, SIM_TX);
 String simLine = "";
 
 // Key Matrix:
@@ -47,11 +45,11 @@ const char KEYMAP[ROWS][COLS] = {
 
 // Phone Configuration:
 enum PhoneState {
-  ST_IDLE,
-  ST_TYPING,
-  ST_CALLING,
-  ST_INCOMING,
-  ST_IN_CALL
+    ST_IDLE,
+    ST_TYPING,
+    ST_CALLING,
+    ST_INCOMING,
+    ST_IN_CALL
 };
 
 PhoneState phoneState = ST_IDLE;
@@ -73,9 +71,39 @@ const unsigned long DEBOUNCE_MS = 220;
 
 void setup () {
     Serial.begin(115200);
+    Serial.println("[BOOT]Throw-a-Phone starting...")
+
+    // Start OLED
+    Wire.begin(I2C_SDA, I2C_SCL);
+    display.setTextColor(SSD1306_WHITE);
+    display.clearDisplay();
+    display.setTextSize(1);
+    display.setCursor(0, 12);
+    display.print("Throw-a-Phone initialising...");
+    display.display();
+
+    // Starting up the Switch Matrix 
+    for (int r = 0; r < ROWS; r++) {
+        pinMode(ROW_PINS[r], OUTPUT);
+        digitalWrite(ROW_PINS[r], HIGH);
+    }
+    for (int c = 0; c < COLS; c++) {
+        pinMode(COL_PINS[c], INPUT_PULLUP);
+    }
+
+    // GSM Module startup
     SIM800L.begin(115200);
     delay(3000);
-
+    SIM800L.println("AT"); \\ Handshake
+    updateSerial();
+    SIM800L.println("AT+CSQ");
+    updateSerial();
+    SIM800L.println("AT+CCID");
+    updateSerial();
+    SIM800L.println("AT+CREG?");
+    updateSerial();
+    SIM800L.println("AT+CLIP=1");
+    updateSerial();
 }
 
 void loop() {
@@ -92,4 +120,36 @@ void updateSerial() {
     {
         Serial.write(SIM800L.read());
     }
+}
+
+
+// Used to scan the key matrix and add the "typing" functionality.
+char scanKeys() {
+    for (int r = 0; r < ROWS; r++) {
+        digitalWrite(ROW_PINS[r], LOW);
+        delayMicroseconds(10);  // settle time for input pull-up
+
+        for (int c = 0; c < COLS; c++) {
+            if (digitalRead(COL_PINS[c]) == LOW) {
+            char key = KEYMAP[r][c];
+            unsigned long now = millis();
+
+            // Accept key if it's a new key or enough time has passed
+            bool newKey   = (key != lastPressKey);
+            bool debounced = (now - lastPressTime >= DEBOUNCE_MS);
+
+            if (newKey || debounced) {
+                lastPressKey  = key;
+                lastPressTime = now;
+                digitalWrite(ROW_PINS[r], HIGH);
+
+                Serial.printf("[KEY] '%c' pressed\n", key);
+                return key;
+        }
+      }
+    }
+        digitalWrite(ROW_PINS[r], HIGH);
+    }
+    lastPressKey = 0;
+    return 0;
 }
