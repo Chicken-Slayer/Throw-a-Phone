@@ -11,7 +11,7 @@ https://github.com/Chicken-Slayer/Throw-a-Phone
 
 // HARDWARE CONFIGURATION:
 
-// OLED:
+// display:
 #define I2C_SDA 8
 #define I2C_SCL 9
 #define SCREEN_W 128
@@ -67,13 +67,13 @@ const unsigned long DEBOUNCE_MS = 220;
 // TODO: Properly configure most things:
 // - Calling
 // - Keys
-// - OLED controls
+// - display controls
 
 void setup () {
     Serial.begin(115200);
     Serial.println("[BOOT]Throw-a-Phone starting...")
 
-    // Start OLED
+    // Start display
     Wire.begin(I2C_SDA, I2C_SCL);
     display.setTextColor(SSD1306_WHITE);
     display.clearDisplay();
@@ -94,7 +94,7 @@ void setup () {
     // GSM Module startup
     SIM800L.begin(115200);
     delay(3000);
-    SIM800L.println("AT"); \\ Handshake
+    SIM800L.println("AT"); 
     updateSerial();
     SIM800L.println("AT+CSQ");
     updateSerial();
@@ -127,7 +127,7 @@ void updateSerial() {
 char scanKeys() {
     for (int r = 0; r < ROWS; r++) {
         digitalWrite(ROW_PINS[r], LOW);
-        delayMicroseconds(10);  // settle time for input pull-up
+        delayMicroseconds(10);
 
         for (int c = 0; c < COLS; c++) {
             if (digitalRead(COL_PINS[c]) == LOW) {
@@ -153,3 +153,166 @@ char scanKeys() {
     lastPressKey = 0;
     return 0;
 }
+
+// This function below can seem a little complicated, but it basically just handles the input that we get from the keys on the board.
+
+void handleKey(char key) {
+    switch (phoneState) { 
+        case ST_IDLE:
+            if (key >= '0' && key <= '9') {
+                dialNumber = "";
+                dialNumber += key;
+                phoneState = ST_TYPING;
+                updateDisplay();
+            }
+            break;
+
+        case ST_TYPING:
+        if (key >= '0' && key <= '9') {
+            if (dialNumber.length() < 15) {
+                dialNumber += key;
+                updateDisplay();
+            }
+        } else if (key == '#') {
+        // Backspace
+            if (dialNumber.length() > 0) {
+                dialNumber.remove(dialNumber.length() - 1);
+            }
+            if (dialNumber.length() == 0) {
+                phoneState = ST_IDLE;
+            }
+            updateDisplay();
+        } else if (key == '*') {
+        // Dial
+            if (dialNumber.length() > 0) {
+                makeCall(dialNumber);
+            }
+        }
+        break;
+
+        case ST_CALLING:
+            if (key == '#') {
+                hangUp();
+            }
+            break;
+
+        case ST_INCOMING:
+            if (key == '*') {
+                answerCall();
+            } else if (key == '#') {
+                hangUp();
+            }
+            break;
+
+
+        case ST_IN_CALL:
+            if (key == '#') {
+                hangUp();
+            }
+            break;
+    }
+}
+
+// GSM Module control
+
+
+
+// Call functions: Just to keep things simplified in the above complicated mess
+void makeCall(const String& number) {
+    Serial.println("[CALL] Dialling " + number);
+    phoneState = ST_CALLING;
+    updateDisplay();
+    SIM800L.println("ATD" + number + ";");
+    updateSerial();
+}
+
+void answerCall() {
+    Serial.println("[CALL] Answering");
+    phoneState = ST_IN_CALL;
+    updateDisplay();
+    SIM800L.println("ATA");
+    updateSerial();
+}
+
+void hangUp() {
+    Serial.println("[CALL] Hanging up");
+    SIM800L.println("ATH");
+    updateSerial();
+    resetToIdle();
+}
+
+void resetToIdle() {
+    phoneState   = ST_IDLE;
+    dialNumber   = "";
+    callerNumber = "";
+    updateDisplay();
+}
+
+// Display stuff
+// This looks longer but perhaps one of the easier parts to understand and write
+
+void drawHint(const char* hint) {
+    display.setTextSize(1);
+    display.setCursor(0, 24);
+    display.print(hint);
+}
+
+void drawNumber(const String& num) {
+    bool large = (num.length() <= 10);
+    display.setTextSize(large ? 2 : 1);
+    int charW = large ? 12 : 6;
+    int x = max(0, (SCREEN_W - (int)num.length() * charW) / 2);
+    int y = large ? 8 : 12;
+    display.setCursor(x, y);
+    display.print(num);
+}
+
+void updateDisplay() {
+    display.clearDisplay();
+    display.setTextColor(SSD1306_WHITE);
+
+    switch (phoneState) {
+
+        case ST_IDLE:
+            display.setTextSize(1);
+            display.setCursor(38, 4);
+            display.print("READY");
+            display.setCursor(16, 20);
+            display.print("Enter number...");
+            break;
+
+        case ST_TYPING:
+            drawHint("* Call      # Del");
+            drawNumber(dialNumber);
+            break;
+
+        case ST_CALLING:
+            display.setTextSize(1);
+            display.setCursor(30, 0);
+            display.print("Calling...");
+            drawNumber(dialNumber);
+            drawHint("     # Cancel");
+            break;
+
+        case ST_INCOMING:
+            display.setTextSize(1);
+            display.setCursor(20, 0);
+            display.print("Incoming Call");
+            drawNumber(callerNumber.length() > 0 ? callerNumber : "Unknown");
+            drawHint("* Answer   # Decline");
+            break;
+
+        case ST_IN_CALL: {
+            display.setTextSize(1);
+            display.setCursor(38, 0);
+            display.print("In Call");
+            String activeNum = (dialNumber.length() > 0) ? dialNumber : callerNumber;
+            drawNumber(activeNum.length() > 0 ? activeNum : "Unknown");
+            drawHint("       # Hang Up");
+            break;
+        }
+    }
+
+    display.display();
+}
+
