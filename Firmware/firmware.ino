@@ -108,6 +108,8 @@ void setup () {
 
 void loop() {
     updateSerial();
+
+    // Will add actual functionality after physical device access
 }
 
 void updateSerial() {
@@ -213,9 +215,7 @@ void handleKey(char key) {
     }
 }
 
-// GSM Module control
-
-
+// TODO: GSM Module control (No access to actual device so far, might end up a buggy mess if I write code without testing on it.)
 
 // Call functions: Just to keep things simplified in the above complicated mess
 void makeCall(const String& number) {
