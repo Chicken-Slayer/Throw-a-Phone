@@ -5,7 +5,7 @@ This device aims to solve this common problem faced by us in our daily lives.
 In all seriousness, this is a device for people who need absolutely no distractions, or simply a cheap device that can be bought to simply make phone calls without any drama.
 
 ## How it works:
-Inside the case, there is an ESP32 C3 SUPERMINI, which is compact and affordable - perfect for this use case. Basically, the device uses a 12 key matrix as input, which can be used to enter phone numbers and answer/end calls. The calls are handled using a SIM800L GSM module connected to an external antenna. Due to the hardware used, it can only support 2G networks, which are outdated and may not be available everywhere. However, this issue is easily fixed by swapping out the SIM800L module for a SIM6700X. However, that will require a few changes to the PCB (not too much timetaking, simply a 5-10 minute fix).
+Inside the case, there is an ESP32 C3 SUPERMINI, which is compact and affordable - perfect for this use case. Basically, the device uses a 12 key matrix as input, which can be used to enter phone numbers and answer/end calls. The calls are handled using a SIM800L GSM module connected to an external antenna. Due to the hardware used, it can only support 2G networks, which are outdated and may not be available everywhere. 
 
 ## PCB:
 Here's the Schematic and the PCB:
