@@ -31,6 +31,16 @@ The device is coded in C, and makes/receives phone calls by communicating with t
 ## Features:
 - Making and receiving phone calls
 
+## Replication Guide:
+This project is quite easy to replicate hardware-wise, but the software part comes out to be more complicated.
+1. Start off by wiring the charging board output to the rocker switch, and then the switch to the ESP32 and the GSM module. The GSM module cannot run on 3.3V supplied by ESP32, so it needs to be powered directly by the battery.
+2. Solder the buttons and the OLED display on to the PCB, making sure that the diodes are in the right direction (COL2ROW).
+3. Solder the ESP32 module to the PCB and connect the RX, TX and GPIO0 pins to the corresponding ones on the GSM modules.
+4. Wire the speaker and the microphone directly to the GSM module and connect the PCB antenna (comes bundled with GSM module).
+5. Connect the battery to the charging board power input. Make sure to check polarity.
+6. Load up the firmware on to the ESP32 board, making sure to check the pin definitions in the code.
+7. Secure the components in place, holding the PCB using the round insertions in the case, and hot gluing remaining components in their respective places. On the top part of the case, space has been given for inserting the microphone, speaker, and rocker switch. There are holes on the bottom part of the case to route the PCB antenna outside and connect the charging module to a USB cable. 
+
 ## BOM:
 | Product Name                         | Amount |
 |--------------------------------------|--------|

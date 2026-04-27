@@ -23,6 +23,7 @@ Adafruit_SSD1306 display(SCREEN_W, SCREEN_H, &Wire, OLED_RESET);
 // GSM Module:
 #define SIM_RX 20
 #define SIM_TX 21
+#define RING 0
 
 SoftwareSerial SIM800L(SIM_RX, SIM_TX);
 String simLine = "";
