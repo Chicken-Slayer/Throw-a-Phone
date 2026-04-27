@@ -32,20 +32,18 @@ The device is coded in C, and makes/receives phone calls by communicating with t
 - Making and receiving phone calls
 
 ## BOM:
-| Product Name                         | Product Link                                                                                    | Unit Price | Amount | Total  | Remarks                        |
-|--------------------------------------|-------------------------------------------------------------------------------------------------|------------|--------|--------|--------------------------------|
-| PCB                                  | https://jlcpcb.com/                                                                             | $2.00      | 1      | $11.47 |                                |
-| SIM800L GPRS GSM Module              | https://roboticsdna.in/product/sim800l-module/                                                  | $3.10      | 1      | $4.04  | Delivery costs and taxes apply |
-| 3.7V 1500 mAh LiPo Battery           | https://robu.in/product/1500mah-pcm-protected-micro-li-po-battery                               | $2.96      | 1      | $2.96  |                                |
-| Tactile Push Button Switch           | https://robu.in/product/6x6x5-tactile-push-button-switch                                        | $0.014     | 12     | $0.28  | Only in packs of 10            |
-| Microphone                           | https://robu.in/product/microphone-97mm-pack-of-3                                               | $0.20      | 1      | $0.58  | Only in packs of 3             |
-| TP4056 Li-ion battery charging board | https://robu.in/product/tp4056-1a-lipo-battery-charging-board-micro-usb-with-current-protection | $0.12      | 1      | $0.12  |                                |
-| 28mm Trumpet Speaker                 | https://robu.in/product/0-5w-8ohm-trumpet-speaker-diameter-28mm                                 | $0.30      | 1      | $0.30  |                                |
-| SPST Rocker Switch                   | https://robu.in/product/spst-rocker-switch-pack-of-3                                            | $0.15      | 1      | $0.15  |                                |
-| ESP32-C3 SUPERMINI                   | https://robu.in/product/esp32-c3-development-board-with-soldering                               | $2.59      | 1      | $2.59  |                                |
-| 0.91 inch I2C OLED Display           | https://roboticsdna.in/product/0-91-inch-iic-4-pin-oled-display-module-ssd1306-white/           | $1.66      | 1      | $2.60  | Delivery costs and taxes apply |
-|                                      |                                                                                                 |            | TOTAL  | $25.09 |                                |
-
+| Product Name                         | Amount |
+|--------------------------------------|--------|
+| PCB                                  | 1      |
+| SIM800L GPRS GSM Module              | 1      |
+| 3.7V 1500 mAh LiPo Battery           | 1      |
+| Tactile Push Button Switch           | 12     |
+| Microphone                           | 1      |
+| TP4056 Li-ion battery charging board | 1      |
+| 28mm Trumpet Speaker                 | 1      |
+| SPST Rocker Switch                   | 1      |
+| ESP32-C3 SUPERMINI                   | 1      |
+| 0.91 inch I2C OLED Display           | 1      |
 
 ## Zine:
 
