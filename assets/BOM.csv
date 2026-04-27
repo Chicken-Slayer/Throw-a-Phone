@@ -1,4 +1,5 @@
 Product Name,Product Link,Unit Price,Amount,Total,Remarks
+PCB,https://jlcpcb.com/,$2.00,1,$11.47,
 SIM800L GPRS GSM Module,https://roboticsdna.in/product/sim800l-module/,$3.10,1,$4.04,Delivery costs and taxes apply
 3.7V 1500 mAh LiPo Battery,https://robu.in/product/1500mah-pcm-protected-micro-li-po-battery,$2.96,1,$2.96,
 Tactile Push Button Switch,https://robu.in/product/6x6x5-tactile-push-button-switch,$0.014,20,$0.28,Only in packs of 10
@@ -8,4 +9,4 @@ TP4056 Li-ion battery charging board,https://robu.in/product/tp4056-1a-lipo-batt
 SPST Rocker Switch,https://robu.in/product/spst-rocker-switch-pack-of-3,$0.15,1,$0.15,
 ESP32-C3 SUPERMINI,https://robu.in/product/esp32-c3-development-board-with-soldering,$2.59,1,$2.59,
 0.91 inch I2C OLED Display,https://roboticsdna.in/product/0-91-inch-iic-4-pin-oled-display-module-ssd1306-white/,$1.66,1,$2.60,Delivery costs and taxes apply
-,,,TOTAL,$13.62,
+,,,TOTAL,$25.09,
