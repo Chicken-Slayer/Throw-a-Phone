@@ -109,8 +109,6 @@ void setup () {
 
 void loop() {
     updateSerial();
-
-    // Will add actual functionality after physical device access
 }
 
 void updateSerial() {
