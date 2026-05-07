@@ -108,9 +108,16 @@ void setup () {
 }
 
 void loop() {
-    updateSerial();
+    readSIM();
+
+    char key = scanKeys();
+    if (key) handleKey(key);
+
+    delay(20);
 }
 
+
+// Note to self: This function is for testing; not to be used in production
 void updateSerial() {
     delay(500);
     while (Serial.available())
@@ -123,6 +130,23 @@ void updateSerial() {
     }
 }
 
+void readSIM() {
+    while (simSerial.available()) {
+        char c = simSerial.read();
+        if (c == '\r') continue;  // skip CR
+        if (c == '\n') {
+        simLine.trim();
+        if (simLine.length() > 0) {
+            Serial.println("[AT<<] " + simLine);
+            processSIMLine(simLine);
+        }
+        simLine = "";
+        } 
+        else {
+        simLine += c;
+        }
+  }
+}
 
 // Used to scan the key matrix and add the "typing" functionality.
 char scanKeys() {
@@ -214,7 +238,52 @@ void handleKey(char key) {
     }
 }
 
-// TODO: GSM Module control (No access to actual device so far, might end up a buggy mess if I write code without testing on it.)
+// GSM Module control (No access to actual device so far, might end up a buggy mess if I write code without testing on it.)
+void processSIMLine(const String& line) {
+
+  // Incoming call to our phone
+  if (line == "RING") {
+    if (phoneState == ST_IDLE || phoneState == ST_TYPING) {
+      callerNumber = "";        // Will be filled once +CLIP arrives
+      phoneState = ST_INCOMING;
+      updateDisplay();
+    }
+    return;
+  }
+
+  // CLIP stands for Calling line identification presentation, basically identification of the caller.
+  if (line.startsWith("+CLIP:")) {
+    int q1 = line.indexOf('"');
+    int q2 = line.indexOf('"', q1 + 1);
+    if (q1 >= 0 && q2 > q1) {
+      callerNumber = line.substring(q1 + 1, q2);
+    }
+    if (phoneState != ST_INCOMING) {
+      phoneState = ST_INCOMING;
+    }
+    updateDisplay();
+    return;
+  }
+
+  // If call is picked up by the receiver
+  if (line.startsWith("+COLP:")) {
+    phoneState = ST_IN_CALL;
+    updateDisplay();
+    return;
+  }
+
+  // When call ends
+  if (line == "NO CARRIER" || line == "BUSY" || line == "NO ANSWER"  || line == "ERROR") {
+    resetToIdle();
+    return;
+  }
+
+  // When we end the call 
+  if (line == "OK" && phoneState == ST_IDLE) {
+    return;
+  }
+}
+
 
 // Call functions: Just to keep things simplified in the above complicated mess
 void makeCall(const String& number) {
