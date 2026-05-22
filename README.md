@@ -54,6 +54,7 @@ This project is quite easy to replicate hardware-wise, but the software part com
 | SPST Rocker Switch                   | https://robu.in/product/spst-rocker-switch-pack-of-3                                            | $0.15      | 1      | $0.15  |                                |
 | ESP32-C3 SUPERMINI                   | https://robu.in/product/esp32-c3-development-board-with-soldering                               | $2.59      | 1      | $2.59  |                                |
 | 0.91 inch I2C OLED Display           | https://roboticsdna.in/product/0-91-inch-iic-4-pin-oled-display-module-ssd1306-white/           | $1.66      | 1      | $2.60  | Delivery costs and taxes apply |
+| M2x10mm CSK Countersunk Philips head bolt| https://robu.in/product/easymech-ss-304-csk-countersunk-philips-head-m2-x-10-mm-bolt-25-pcs/| $1.48      | 4      | $1.48  | Only in packs of 25            |
 |                                      |                                                                                                 |            | TOTAL  | $25.09 |                                |
 ## Zine:
 
